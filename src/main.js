@@ -16,8 +16,18 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 const store = createStore({
     state() {
-        // return()
-    },
+        return {
+            //假登录数据
+            res: {
+                data: {
+                    meta: {
+                        status: 200,
+                    },
+                    token: 'Bearer xxx'
+                }
+            }
+        }
+    }
     // getters: {},
     // mutations: {},
     // actions: {},

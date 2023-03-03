@@ -1,12 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../components/home.vue'
-import Login from '../components/login/login.vue'
+import Home from '../components/Home.vue'
+import Login from '../components/login.vue'
 
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
         { path: '/', redirect: '/login' },
         { path: '/login', name: 'login', component: Login },
+        { path: '/home', name: 'home', component: Home },
         // {
         //     path: '/about',
         //     name: 'about',
@@ -15,8 +16,11 @@ const router = createRouter({
     ]
 })
 
-// router.beforeEach((to, from, next) => {
-//     next()
-// })
+router.beforeEach((to, from, next) => {
+    if (to.path === '/login') return next()
+    const token = window.sessionStorage.getItem('token')
+    if (!token) return next('./login')
+    next()
+})
 
 export default router
