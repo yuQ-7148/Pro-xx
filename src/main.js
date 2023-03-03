@@ -6,10 +6,13 @@ import './assets/css/global.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import router from './router/index.js'
 import { createStore } from 'vuex'
+import axios from 'axios'
 
+// axios.defaults.baseURL = ''
+// Vue.prototype.$http = axios
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component)
+    app.component(key, component)
 }
 const store = createStore({
     state() {

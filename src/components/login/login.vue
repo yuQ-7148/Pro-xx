@@ -17,7 +17,7 @@
                 </el-form-item>
                 <!-- 按钮 -->
                 <el-form class="btns">
-                    <el-button type="primary">登录</el-button>
+                    <el-button type="primary" @click="login">登录</el-button>
                     <el-button type="info" @click="resetLoginForm">重置</el-button>
                 </el-form>
             </el-form>
@@ -31,8 +31,8 @@ export default {
     data() {
         return {
             form: {
-                username: '',
-                password: '',
+                username: 'admin',
+                password: '123456',
             },
             rules: {
                 username: [
@@ -41,10 +41,28 @@ export default {
                 password: [
                     { required: true, message: '请输入密码', trigger: 'blur' },
                 ],
+            },
+            //假登录数据
+            res: {
+                data: {
+                    token: "Bearer xxx"
+                }
             }
         }
     },
     methods: {
+        login() {
+            this.$refs.loginFormRef.validate((valid) => {
+                if (!valid) return;
+                // const { data: res } = await this.$http.post('login',this.form)
+                // if (res.meta.status !==200 ) return ElMessage.error("登录失败");
+                // ElMessage.success("登录成功");
+                ElMessage.success('登录成功')
+                //保存token到sessionStorage中
+                window.sessionStorage.setItem("token", this.res.data.token)
+                this.$router.push('/home')
+            })
+        },
         resetLoginForm() {
             this.$refs.loginFormRef.resetFields()
         }
