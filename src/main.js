@@ -23,11 +23,11 @@ const store = createStore({
                     meta: {
                         status: 200,
                     },
-                    token: 'Bearer xxx'
-                }
-            }
+                    token: 'Bearer xxx',
+                },
+            },
         }
-    }
+    },
     // getters: {},
     // mutations: {},
     // actions: {},
