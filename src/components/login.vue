@@ -49,10 +49,10 @@ export default {
             this.$refs.loginFormRef.validate((valid) => {
                 if (!valid) return;
                 // const { data: res } = await this.$http.post('login',this.form)
-                const { data: res } = this.$store.state.res
+                const res = this.$store.state.res
                 if (res.meta.status !== 200) return ElMessage.error("登录失败");
                 ElMessage.success("登录成功");
-                window.sessionStorage.setItem("token", res.token)
+                window.sessionStorage.setItem("token", res.data.token)
                 this.$router.push('/home')
             })
         },
