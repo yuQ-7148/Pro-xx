@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../components/Home.vue'
 import Login from '../components/login.vue'
+import Home from '../components/home.vue'
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -19,7 +19,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     if (to.path === '/login') return next()
     const token = window.sessionStorage.getItem('token')
-    if (!token) return next('./login')
+    if (!token) return next('/login')
     next()
 })
 
