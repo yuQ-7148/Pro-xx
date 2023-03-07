@@ -16,10 +16,11 @@
                 <div class="toggle-button" @click="this.isCollapse = !this.isCollapse">|||</div>
                 <!-- 菜单区域 -->
                 <el-menu background-color="#333744" text-color="#fff" active-text-color="#409eff" :unique-opened="true"
-                    :collapse="isCollapse" :collapse-transition="false">
+                    :collapse="isCollapse" :collapse-transition="false" :router="true" :default-active="activePath">
                     <el-sub-menu v-for="item in this.menuList" :key="item.id" :index="item.id.toString()">
                         <template #title>{{ item.authName }}</template>
-                        <el-menu-item v-for="subItem in item.children" :key="subItem.id" :index="subItem.id.toString()">
+                        <el-menu-item v-for="subItem in item.children" :key="subItem.id" :index="subItem.path"
+                            @click="saveNavState(subItem.path)">
                             {{ subItem.authName }}
                         </el-menu-item>
                     </el-sub-menu>
@@ -27,7 +28,9 @@
                 </el-menu>
             </el-aside>
             <!-- 内容主体 -->
-            <el-main>Main</el-main>
+            <el-main>
+                <router-view></router-view>
+            </el-main>
         </el-container>
     </el-container>
 </template>
@@ -39,6 +42,7 @@ export default {
         return {
             isCollapse: false,
             menuList: [],
+            activePath: ''
             // iconObj: {
             //     '1': 'User',
             //     '101': '',
@@ -63,10 +67,15 @@ export default {
             if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
             this.menuList = res.data
             console.log(res);
+        },
+        saveNavState(activePath) {
+            window.sessionStorage.setItem('activePath', activePath)
+            this.activePath = window.sessionStorage.getItem('activePath')
         }
     },
     created() {
         this.getMenuList()
+        this.activePath = window.sessionStorage.getItem('activePath')
     },
 }
 </script>
@@ -110,6 +119,7 @@ export default {
 
 .el-aside {
     background-color: #333744;
+
     .toggle-button {
         background-color: #4a5064;
         font-size: 10px;

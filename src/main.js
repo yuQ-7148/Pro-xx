@@ -6,7 +6,7 @@ import './assets/css/global.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import router from './router/index.js'
 import { createStore } from 'vuex'
-import axios from 'axios'
+// import axios from 'axios'
 
 // axios.defaults.baseURL = ''
 // Vue.prototype.$http = axios
@@ -36,7 +36,8 @@ const store = createStore({
                         children: [
                             {
                                 id: 101,
-                                authName: '用户列表'
+                                authName: '用户列表',
+                                path: 'users'
                             }
                         ]
                     },
@@ -46,11 +47,13 @@ const store = createStore({
                         children: [
                             {
                                 id: 201,
-                                authName: '角色列表'
+                                authName: '角色列表',
+                                path: 'character'
                             },
                             {
                                 id: 202,
-                                authName: '权限列表'
+                                authName: '权限列表',
+                                path: 'limitList'
                             }
                         ]
                     },
