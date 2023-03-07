@@ -78,6 +78,36 @@ const store = createStore({
                     status: 200,
                     msg: '登录成功',
                 },
+            },
+            res_user: {
+                data: {
+                    pagenum: 1,
+                    total: 5,
+                    users: [
+                        {
+                            id: 25,
+                            role_name: '超级管理员',
+                            username: 'admin',
+                            type: 1,
+                            email: '1341155745@qq.com',
+                            mobile: '16134242448',
+                            mg_state: true
+                        },
+                        {
+                            id: 26,
+                            role_name: '超级管理员',
+                            username: 'qerqer',
+                            type: 1,
+                            email: '3343434745@qq.com',
+                            mobile: '16813424110',
+                            mg_state: true
+                        },
+                    ]
+                },
+                meta: {
+                    status: 200,
+                    msg: '获取管理员列表成功'
+                }
             }
         }
     },
