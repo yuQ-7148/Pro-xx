@@ -35,7 +35,25 @@
                         <el-switch v-model="scope.row.mg_state" />
                     </template>
                 </el-table-column>
-                <el-table-column label="操作"></el-table-column>
+                <el-table-column label="操作">
+                    <template #default="scope">
+                        <el-button type="primary">
+                            <el-icon>
+                                <Edit />
+                            </el-icon>
+                        </el-button>
+                        <el-button type="primary">
+                            <el-icon>
+                                <Delete />
+                            </el-icon>
+                        </el-button>
+                        <el-button type="primary">
+                            <el-icon>
+                                <Setting />
+                            </el-icon>
+                        </el-button>
+                    </template>
+                </el-table-column>
             </el-table>
         </el-card>
     </div>
