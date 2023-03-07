@@ -100,7 +100,7 @@ const store = createStore({
                             type: 1,
                             email: '3343434745@qq.com',
                             mobile: '16813424110',
-                            mg_state: true
+                            mg_state: false
                         },
                     ]
                 },
