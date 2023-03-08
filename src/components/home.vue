@@ -66,7 +66,7 @@ export default {
             const res = this.$store.state.res_1
             if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
             this.menuList = res.data
-            console.log(res);
+            // console.log(res);
         },
         saveNavState(activePath) {
             window.sessionStorage.setItem('activePath', activePath)

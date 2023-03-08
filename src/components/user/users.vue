@@ -106,7 +106,7 @@
             <template #footer>
                 <span class="dialog-footer">
                     <el-button @click="dialogVisible = false">取消</el-button>
-                    <el-button type="primary" @click="dialogVisible = false">
+                    <el-button type="primary" @click="addUser">
                         确定
                     </el-button>
                 </span>
@@ -231,7 +231,7 @@ export default {
             if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
             this.userList = res.data.users
             this.total = res.data.total
-            console.log(res);
+            // console.log(res);
         },
         handleSizeChange(newSize) {
             this.queryInfo.pagesize = newSize
@@ -242,7 +242,7 @@ export default {
             this.getUserList()
         },
         async userStateChanged(userInfo) {
-            console.log(userInfo);
+            // console.log(userInfo);
             //const { data: res } = await this.$http.put(``)
             // if (res.meta.status !== 200) {
             //     userInfo.row.mg_state = !userInfo.row.mg_state
@@ -256,6 +256,19 @@ export default {
         },
         dialogClosed() {
             this.$refs.addFormRef.resetFields()
+        },
+        addUser() {
+            this.$refs.addFormRef.validate(async valid => {
+                if (!valid) return this.$message.error('表中所填数据存在错误！')
+                // const { data: res } = await this.$http.post('users', this.addForm)
+                const res = this.$store.state.res_addUser
+                if(res.meta.status !== 201) return this.$message.error('用户添加失败！')
+                this.$store.state.res_user.data.users.push(newForm)
+                // console.log(this.addForm);
+                this.$message.success('用户添加成功')
+                // this.dialogVisible = false
+                // this.getUserList()
+            })
         }
     },
     created() {

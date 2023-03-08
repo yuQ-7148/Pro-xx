@@ -110,6 +110,12 @@ const store = createStore({
                     status: 200,
                     msg: '获取管理员列表成功'
                 }
+            },
+            res_addUser: {
+                meta: {
+                    status: 201,
+                    msg: '用户添加成功'
+                }
             }
         }
     },
