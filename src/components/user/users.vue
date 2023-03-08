@@ -32,7 +32,7 @@
                 <el-table-column label="角色" prop="role_name"></el-table-column>
                 <el-table-column label="状态" prop="mg_state">
                     <template #default="scope">
-                        <el-switch v-model="scope.row.mg_state" />
+                        <el-switch v-model="scope.row.mg_state" @change="userStateChanged(scope)" />
                     </template>
                 </el-table-column>
                 <el-table-column label="操作">
@@ -96,6 +96,16 @@ export default {
         handleCurrentChange(newPage) {
             this.queryInfo.pagenum = newPage
             this.getUserList()
+        },
+        async userStateChanged(userInfo) {
+            console.log(userInfo);
+            //const { data: res } = await this.$http.put(``)
+            // if (res.meta.status !== 200) {
+            //     userInfo.row.mg_state = !userInfo.row.mg_state
+            //     return this.$message.error(res.meta.msg)
+            // }
+            this.$message.success('更新用户状态成功')
+            this.$store.state.res_user.data.users[userInfo.$index].mg_state = userInfo.row.mg_state
         }
     },
     created() {
