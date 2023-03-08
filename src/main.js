@@ -87,7 +87,7 @@ const store = createStore({
                     total: 5,
                     users: [
                         {
-                            id: 25,
+                            id: '25',
                             role_name: '超级管理员',
                             username: 'admin',
                             type: 1,
@@ -96,7 +96,7 @@ const store = createStore({
                             mg_state: true
                         },
                         {
-                            id: 26,
+                            id: '26',
                             role_name: '超级管理员',
                             username: 'qerqer',
                             type: 1,

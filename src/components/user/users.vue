@@ -81,16 +81,27 @@
                    title="添加用户"
                    width="50%">
             <!-- 内容总体 -->
-            <el-form
-                     :model="ruleForm"
-                     :rules="rules"
-                     label-width="120px"
-                     :size="formSize"
-                     status-icon>
-                <el-form-item label="Activity name" prop="name">
-                    <el-input v-model="ruleForm.name" />
+            <el-form :model="addForm"
+                     :rules="addFormRules"
+                     :ref="addFormRef"
+                     label-width="120px">
+                <el-form-item label="ID" prop="id">
+                    <el-input v-model="addForm.id" />
+                </el-form-item>
+                <el-form-item label="用户名" prop="username">
+                    <el-input v-model="addForm.username" />
+                </el-form-item>
+                <el-form-item label="角色名" prop="role_name">
+                    <el-input v-model="addForm.role_name" />
+                </el-form-item>
+                <el-form-item label="邮箱" prop="email">
+                    <el-input v-model="addForm.email" />
+                </el-form-item>
+                <el-form-item label="手机" prop="mobile">
+                    <el-input v-model="addForm.mobile" />
                 </el-form-item>
             </el-form>
+            <!-- 对话框按钮 -->
             <template #footer>
                 <span class="dialog-footer">
                     <el-button @click="dialogVisible = false">取消</el-button>
@@ -115,7 +126,77 @@ export default {
             },
             userList: [],
             total: 0,
-            dialogVisible: false
+            dialogVisible: false,
+            addForm: {
+                id: '',
+                username: '',
+                role_name: '',
+                type: 1,
+                email: '',
+                mobile: '',
+                mg_state: true
+            },
+            addFormRules: {
+                id: [
+                    {
+                        required: true,
+                        message: '请输入ID',
+                        trigger: 'blur'
+                    },
+                    {
+                        max: 10,
+                        min: 1,
+                        message: '用户名的长度在1~10字符之间',
+                        trigger: 'blur'
+                    }
+                ],
+                username: [
+                    {
+                        required: true,
+                        message: '请输入用户名',
+                        trigger: 'blur'
+                    },
+                    {
+                        max: 10,
+                        min: 3,
+                        message: '用户名的长度在3~10字符之间',
+                        trigger: 'blur'
+                    }
+                ],
+                role_name: [
+                    {
+                        required: true,
+                        message: '请输入角色名',
+                        trigger: 'blur'
+                    },
+                    {
+                        max: 20,
+                        min: 3,
+                        message: '用户名的长度在3~20字符之间',
+                        trigger: 'blur'
+                    }
+                ],
+                email: [
+                    {
+                        required: true,
+                        message: '请输入邮箱',
+                        trigger: 'blur'
+                    }
+                ],
+                mobile: [
+                    {
+                        required: true,
+                        message: '请输入手机号',
+                        trigger: 'blur'
+                    },
+                    {
+                        max: 11,
+                        min: 11,
+                        message: '手机号长度为11位',
+                        trigger: 'blur'
+                    }
+                ]
+            }
         }
     },
     methods: {
