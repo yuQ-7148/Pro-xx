@@ -58,6 +58,10 @@
                     </template>
                 </el-table-column>
             </el-table>
+            <!-- 分页栏 -->
+            <el-pagination v-model:current-page="queryInfo.pagenum" v-model:page-size="queryInfo.pagesize"
+                :page-sizes="[10, 15, 20, 25]" layout="total, sizes, prev, pager, next, jumper" :total="total"
+                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </el-card>
     </div>
 </template>
@@ -70,7 +74,7 @@ export default {
             queryInfo: {
                 query: '',
                 pagenum: 1,
-                pagesize: 2,
+                pagesize: 10,
             },
             userList: [],
             total: 0
@@ -84,6 +88,14 @@ export default {
             this.userList = res.data.users
             this.total = res.data.total
             console.log(res);
+        },
+        handleSizeChange(newSize) {
+            this.queryInfo.pagesize = newSize
+            this.getUserList()
+        },
+        handleCurrentChange(newPage) {
+            this.queryInfo.pagenum = newPage
+            this.getUserList()
         }
     },
     created() {
@@ -109,6 +121,10 @@ export default {
     .el-table {
         margin-top: 20px;
         font-size: 14px;
+    }
+
+    .el-pagination {
+        margin-top: 20px;
     }
 }
 </style>

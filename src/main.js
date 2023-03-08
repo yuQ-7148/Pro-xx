@@ -7,6 +7,8 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import router from './router/index.js'
 import { createStore } from 'vuex'
 // import axios from 'axios'
+import ElementPlus from 'element-plus'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 // axios.defaults.baseURL = ''
 // Vue.prototype.$http = axios
@@ -120,5 +122,8 @@ const store = createStore({
 //挂载-------------------------------------------------------------------------------------
 app.use(router)
 app.use(store)
+app.use(ElementPlus, {
+    locale: zhCn,
+  })
 
 app.mount('#app')
