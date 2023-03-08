@@ -11,16 +11,21 @@
             <!-- 搜索与添加 -->
             <el-row :gutter="20">
                 <el-col :span="9">
-                    <el-input placeholder="请输入内容">
+                    <el-input placeholder="请输入内容"
+                              v-model="queryInfo.query"
+                              clearable @clear="getUserList()"
+                              @keyup.enter="getUserList()">
                         <template #append>
-                            <el-icon>
-                                <Search />
-                            </el-icon>
+                            <el-button @click="getUserList()">
+                                <el-icon>
+                                    <Search />
+                                </el-icon>
+                            </el-button>
                         </template>
                     </el-input>
                 </el-col>
                 <el-col :span="4">
-                    <el-button type="primary">添加用户</el-button>
+                    <el-button type="primary" @click="changeDialogVisible()">添加用户</el-button>
                 </el-col>
             </el-row>
             <!-- 用户列表 -->
@@ -32,7 +37,8 @@
                 <el-table-column label="角色" prop="role_name"></el-table-column>
                 <el-table-column label="状态" prop="mg_state">
                     <template #default="scope">
-                        <el-switch v-model="scope.row.mg_state" @change="userStateChanged(scope)" />
+                        <el-switch v-model="scope.row.mg_state"
+                                   @change="userStateChanged(scope)" />
                     </template>
                 </el-table-column>
                 <el-table-column label="操作">
@@ -47,7 +53,10 @@
                                 <Delete />
                             </el-icon>
                         </el-button>
-                        <el-tooltip class="box-item" effect="dark" content="分配角色" placement="top" :enterable="false">
+                        <el-tooltip class="box-item"
+                                    effect="dark" content="分配角色"
+                                    placement="top"
+                                    :enterable="false">
                             <el-button type="warning">
                                 <el-icon>
                                     <Setting />
@@ -59,10 +68,38 @@
                 </el-table-column>
             </el-table>
             <!-- 分页栏 -->
-            <el-pagination v-model:current-page="queryInfo.pagenum" v-model:page-size="queryInfo.pagesize"
-                :page-sizes="[10, 15, 20, 25]" layout="total, sizes, prev, pager, next, jumper" :total="total"
-                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+            <el-pagination v-model:current-page="queryInfo.pagenum"
+                           v-model:page-size="queryInfo.pagesize"
+                           :page-sizes="[10, 15, 20, 25]"
+                           layout="total, sizes, prev, pager, next, jumper"
+                           :total="total"
+                           @size-change="handleSizeChange"
+                           @current-change="handleCurrentChange" />
         </el-card>
+        <!-- 添加用户对话框 -->
+        <el-dialog v-model="dialogVisible"
+                   title="添加用户"
+                   width="50%">
+            <!-- 内容总体 -->
+            <el-form
+                     :model="ruleForm"
+                     :rules="rules"
+                     label-width="120px"
+                     :size="formSize"
+                     status-icon>
+                <el-form-item label="Activity name" prop="name">
+                    <el-input v-model="ruleForm.name" />
+                </el-form-item>
+            </el-form>
+            <template #footer>
+                <span class="dialog-footer">
+                    <el-button @click="dialogVisible = false">取消</el-button>
+                    <el-button type="primary" @click="dialogVisible = false">
+                        确定
+                    </el-button>
+                </span>
+            </template>
+        </el-dialog>
     </div>
 </template>
 
@@ -77,7 +114,8 @@ export default {
                 pagesize: 10,
             },
             userList: [],
-            total: 0
+            total: 0,
+            dialogVisible: false
         }
     },
     methods: {
@@ -106,6 +144,9 @@ export default {
             // }
             this.$message.success('更新用户状态成功')
             this.$store.state.res_user.data.users[userInfo.$index].mg_state = userInfo.row.mg_state
+        },
+        changeDialogVisible() {
+            this.dialogVisible = true
         }
     },
     created() {
