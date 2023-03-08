@@ -42,16 +42,19 @@
                                 <Edit />
                             </el-icon>
                         </el-button>
-                        <el-button type="primary">
+                        <el-button type="danger">
                             <el-icon>
                                 <Delete />
                             </el-icon>
                         </el-button>
-                        <el-button type="primary">
-                            <el-icon>
-                                <Setting />
-                            </el-icon>
-                        </el-button>
+                        <el-tooltip class="box-item" effect="dark" content="分配角色" placement="top" :enterable="false">
+                            <el-button type="warning">
+                                <el-icon>
+                                    <Setting />
+                                </el-icon>
+                            </el-button>
+                        </el-tooltip>
+
                     </template>
                 </el-table-column>
             </el-table>
