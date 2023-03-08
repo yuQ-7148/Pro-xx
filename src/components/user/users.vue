@@ -41,7 +41,7 @@
                                    @change="userStateChanged(scope)" />
                     </template>
                 </el-table-column>
-                <el-table-column label="操作">
+                <el-table-column label="操作" width="195px">
                     <template #default="scope">
                         <el-button type="primary">
                             <el-icon>
@@ -79,11 +79,12 @@
         <!-- 添加用户对话框 -->
         <el-dialog v-model="dialogVisible"
                    title="添加用户"
-                   width="50%">
+                   width="50%"
+                   @close="dialogClosed">
             <!-- 内容总体 -->
             <el-form :model="addForm"
                      :rules="addFormRules"
-                     :ref="addFormRef"
+                     ref="addFormRef"
                      label-width="120px">
                 <el-form-item label="ID" prop="id">
                     <el-input v-model="addForm.id" />
@@ -118,6 +119,23 @@
 export default {
     name: 'Users',
     data() {
+        var checkEmail = (rule, value, cb) => {
+            const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/
+            if (regEmail.test(value)) {
+                return cb()
+            }
+
+            cb(new Error('请输入合法的邮箱'))
+        }
+
+        var checkMobile = (rule, value, cb) => {
+            const regMobile = /^(1)+([0-9]{10})+/
+            if (regMobile.test(value)) {
+                return cb()
+            }
+
+            cb(new Error('请输入合法手机号'))
+        }
         return {
             queryInfo: {
                 query: '',
@@ -181,6 +199,10 @@ export default {
                         required: true,
                         message: '请输入邮箱',
                         trigger: 'blur'
+                    },
+                    {
+                        validator: checkEmail,
+                        trigger: 'blur'
                     }
                 ],
                 mobile: [
@@ -191,8 +213,11 @@ export default {
                     },
                     {
                         max: 11,
-                        min: 11,
-                        message: '手机号长度为11位',
+                        message: '请输入合法手机号',
+                        trigger: 'blur'
+                    },
+                    {
+                        validator: checkMobile,
                         trigger: 'blur'
                     }
                 ]
@@ -228,6 +253,9 @@ export default {
         },
         changeDialogVisible() {
             this.dialogVisible = true
+        },
+        dialogClosed() {
+            this.$refs.addFormRef.resetFields()
         }
     },
     created() {
@@ -247,7 +275,8 @@ export default {
 }
 
 .el-card {
-    // height: calc(100% - 40px);
+    position: relative;
+    height: calc(100% - 40px);
     box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.15);
 
     .el-table {
@@ -256,7 +285,9 @@ export default {
     }
 
     .el-pagination {
+        position: absolute;
         margin-top: 20px;
+        bottom: 15px;
     }
 }
 </style>
