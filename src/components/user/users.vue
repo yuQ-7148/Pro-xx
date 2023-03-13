@@ -49,7 +49,7 @@
                                 <Edit />
                             </el-icon>
                         </el-button>
-                        <el-button type="danger">
+                        <el-button type="danger" @click="deleteUserInfo(scope.row.id)">
                             <el-icon>
                                 <Delete />
                             </el-icon>
@@ -125,10 +125,10 @@
                      ref="editFormRef"
                      label-width="120px">
                 <el-form-item label="ID" prop="id">
-                    <el-input v-model="editUser.id" disabled/>
+                    <el-input v-model="editUser.id" disabled />
                 </el-form-item>
                 <el-form-item label="用户名" prop="username">
-                    <el-input v-model="editUser.username" disabled/>
+                    <el-input v-model="editUser.username" disabled />
                 </el-form-item>
                 <el-form-item label="角色名" prop="role_name">
                     <el-input v-model="editUser.role_name" />
@@ -154,6 +154,9 @@
 </template>
 
 <script>
+// import { ElMessage, ElMessageBox } from 'element-plus'
+
+
 export default {
     name: 'Users',
     data() {
@@ -332,6 +335,30 @@ export default {
             // if (res.meta.status !== 200) return this.$message.error('用户数据请求失败')
             this.editUser = editUser
             this.editDialogVisible = true
+        },
+        deleteUserInfo() {
+            ElMessageBox.confirm(
+                '确定要删除这个用户吗?',
+                '删除用户',
+                {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning',
+                }
+            )
+                .then(() => {
+
+                    ElMessage({
+                        type: 'success',
+                        message: '删除成功',
+                    })
+                })
+                .catch(() => {
+                    ElMessage({
+                        type: 'info',
+                        message: '删除取消',
+                    })
+                })
         }
     },
     created() {

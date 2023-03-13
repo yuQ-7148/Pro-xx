@@ -4,7 +4,7 @@
         <el-header>
             <div>
                 <img src="../assets/images/logo.png" alt="">
-                <span>经营分析平台前端项目框架搭建</span>
+                <span>学习平台报表平台</span>
             </div>
             <el-button type="info" @click="logout">退出</el-button>
         </el-header>
