@@ -75,6 +75,17 @@ const store = createStore({
                         id: 6,
                         authName: '智能审批',
                     },
+                    {
+                        id: 7,
+                        authName: '系统BI',
+                        children: [
+                            {
+                                id: 701,
+                                authName: '系统BI',
+                                path: 'systembi'
+                            },
+                        ]
+                    },
                 ],
                 meta: {
                     status: 200,
