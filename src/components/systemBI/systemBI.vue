@@ -46,8 +46,7 @@ export default {
         return {
             condition: {
                 type: {
-                    value: '',
-                    used: true,
+                    value: 'all',
                 },
                 date: {
                     type: 'year',

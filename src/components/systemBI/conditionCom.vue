@@ -4,12 +4,12 @@
         <div class="conditionDiv">
             <el-select v-model="condition.type.value"
                        @change="updateCondition"
-                       :disabled="!condition.type.used"
                        placeholder="系统类型">
+                <el-option :label="'所有系统'"
+                           :value="'all'" selected/>
                 <el-option :label="'CRM'"
                            :value="'crm'" />
             </el-select>
-            <el-switch v-model="condition.type.used" @change="updateCondition" />
         </div>
         <!-- 日期类型选择 -->
         <div class="conditionDiv" style="margin-right: 10px; display: inline-block; width: 65px;">
