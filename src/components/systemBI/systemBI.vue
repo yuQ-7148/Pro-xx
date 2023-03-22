@@ -14,18 +14,18 @@
             <!-- 页面主体 -->
             <el-main>
                 <el-row :gutter="20">
-                    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
-                    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
-                    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
-                    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
-                    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
-                    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
-                    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
-                    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
-                    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
-                    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
-                    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
-                    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
+                    <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
+                    <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
+                    <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
+                    <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
+                    <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
+                    <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
+                    <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
+                    <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
+                    <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
+                    <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
+                    <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
+                    <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6"><result-com :data="data.res_1"></result-com></el-col>
                 </el-row>
             </el-main>
         </el-container>

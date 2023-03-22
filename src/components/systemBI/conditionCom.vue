@@ -6,9 +6,17 @@
                        @change="updateCondition"
                        placeholder="系统类型">
                 <el-option :label="'所有系统'"
-                           :value="'all'" selected/>
+                           :value="'all'" selected />
+                <el-option :label="'SHR'"
+                           :value="'shr'" />
                 <el-option :label="'CRM'"
                            :value="'crm'" />
+                <el-option :label="'PLM'"
+                           :value="'plm'" />
+                <el-option :label="'智能会议'"
+                           :value="'Conference'" />
+                <el-option :label="'点检'"
+                           :value="'spot'" />
             </el-select>
         </div>
         <!-- 日期类型选择 -->

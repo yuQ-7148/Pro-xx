@@ -18,7 +18,7 @@ export default {
 #container {
     display: inline-block;
     width: 100%;
-    height: 220px;
+    height: 160px;
     padding: 0;
 
     .el-card {
