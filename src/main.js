@@ -84,6 +84,11 @@ const store = createStore({
                                 authName: '系统BI',
                                 path: 'systembi'
                             },
+                            {
+                                id: 702,
+                                authName: '人力编制分析',
+                                path: 'rlbzfx'
+                            },
                         ]
                     },
                 ],
