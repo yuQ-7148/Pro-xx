@@ -9,6 +9,8 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import VChart from 'vue-echarts'
+import 'echarts'
 
 const app = createApp(App)
 axios.defaults.baseURL = 'http://42.192.58.33:6688'
@@ -147,5 +149,6 @@ app.use(store)
 app.use(ElementPlus, {
     locale: zhCn,
   })
+app.component('v-chart',VChart)
 
 app.mount('#app')
