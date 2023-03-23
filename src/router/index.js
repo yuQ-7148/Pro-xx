@@ -20,9 +20,9 @@ const router = createRouter({
                 { path: '/welcome', component: Welcome },
                 { path: '/users', component: User },
                 { path: '/systembi', component: SystemBI },
-                { path: '/rlbzfx', component: RLBZFX },
             ]
         },
+        { path: '/rlbzfx', name: 'rlbzfx', component: RLBZFX },
         // {
         //     path: '/about',
         //     name: 'about',

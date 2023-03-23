@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    name: 'ResultCom',
+    name: 'RlbzfxResultCom',
     props: ['data']
 }
 </script>
@@ -37,7 +37,7 @@ export default {
             top: 30%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 40px;
+            font-size: 26px;
         }
 
         #value {
@@ -48,7 +48,7 @@ export default {
             top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 40px;
+            font-size: 26px;
             color: aqua;
         }
     }
