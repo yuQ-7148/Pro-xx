@@ -6,15 +6,15 @@ import './assets/css/global.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import router from './router/index.js'
 import { createStore } from 'vuex'
-import axios from 'axios'
+// import axios from 'axios'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import VChart from 'vue-echarts'
 import 'echarts'
 
 const app = createApp(App)
-axios.defaults.baseURL = 'http://42.192.58.33:6688'
-app.config.globalProperties.$http = axios
+// axios.defaults.baseURL = 'http://42.192.58.33:6688'
+// app.config.globalProperties.$http = axios
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }

@@ -190,7 +190,10 @@ export default {
 
             }
         }
-    }
+    },
+    mounted() {
+        
+    },
 }
 </script>
 

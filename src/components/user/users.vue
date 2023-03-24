@@ -123,6 +123,7 @@
 
 <script>
 // import { ElMessage, ElMessageBox } from 'element-plus'
+import { getUserList } from '../../api/getUserList'
 
 
 export default {
@@ -237,11 +238,19 @@ export default {
     },
     methods: {
         async getUserList() {
-            const res = await this.$http.get('/shr/getAllUsers')
+            //     const res = await this.$http.get('/shr/getAllUsers')
+            //     // console.log(res);
+            //     if (res.request.status !== 200) return this.$message.error('获取用户数据失败')
+            //     this.total = res.data.length
+            //     this.userList = res.data.filter(
+            //         (item, index) =>
+            //             index < this.queryInfo.pagenum * this.queryInfo.pagesize &&
+            //             index >= (this.queryInfo.pagenum - 1) * this.queryInfo.pagesize
+            //     );
+            const res = await getUserList()
             // console.log(res);
-            if (res.request.status !== 200) return this.$message.error('获取用户数据失败')
-            this.total = res.data.length
-            this.userList = res.data.filter(
+            this.total = res.length
+            this.userList = res.filter(
                 (item, index) =>
                     index < this.queryInfo.pagenum * this.queryInfo.pagesize &&
                     index >= (this.queryInfo.pagenum - 1) * this.queryInfo.pagesize
@@ -334,6 +343,7 @@ export default {
     },
     created() {
         this.getUserList()
+
     }
 }
 </script>
