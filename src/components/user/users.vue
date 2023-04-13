@@ -30,48 +30,16 @@
             </el-row>
             <!-- 用户列表 -->
             <el-table :data="userList" border stripe>
-                <el-table-column type="index"></el-table-column>
-                <el-table-column label="姓名" prop="username"></el-table-column>
-                <el-table-column label="邮箱" prop="email"></el-table-column>
-                <el-table-column label="电话" prop="mobile"></el-table-column>
-                <el-table-column label="角色" prop="role_name"></el-table-column>
-                <el-table-column label="状态" prop="mg_state">
-                    <template #default="scope">
-                        <el-switch v-model="scope.row.mg_state"
-                                   @change="userStateChanged(scope)" />
-                    </template>
-                </el-table-column>
-                <el-table-column label="操作" width="195px">
-                    <template #default="scope">
-                        <el-button type="primary"
-                                   @click="showEditDialog(scope.row)">
-                            <el-icon>
-                                <Edit />
-                            </el-icon>
-                        </el-button>
-                        <el-button type="danger" @click="deleteUserInfo(scope.row.id)">
-                            <el-icon>
-                                <Delete />
-                            </el-icon>
-                        </el-button>
-                        <el-tooltip class="box-item"
-                                    effect="dark" content="分配角色"
-                                    placement="top"
-                                    :enterable="false">
-                            <el-button type="warning">
-                                <el-icon>
-                                    <Setting />
-                                </el-icon>
-                            </el-button>
-                        </el-tooltip>
-
-                    </template>
-                </el-table-column>
+                <el-table-column type="index" width="50px"></el-table-column>
+                <el-table-column label="姓名" prop="FName"></el-table-column>
+                <el-table-column label="所在部门" prop="FDeptName"></el-table-column>
+                <el-table-column label="职位" prop="FStation"></el-table-column>
+                <el-table-column label="电话" prop="FPhoneNumber"></el-table-column>
             </el-table>
             <!-- 分页栏 -->
             <el-pagination v-model:current-page="queryInfo.pagenum"
                            v-model:page-size="queryInfo.pagesize"
-                           :page-sizes="[10, 15, 20, 25]"
+                           :page-sizes="[20, 50, 100]"
                            layout="total, sizes, prev, pager, next, jumper"
                            :total="total"
                            @size-change="handleSizeChange"
@@ -155,6 +123,7 @@
 
 <script>
 // import { ElMessage, ElMessageBox } from 'element-plus'
+import { getUserList } from '../../api/getUserList'
 
 
 export default {
@@ -181,7 +150,7 @@ export default {
             queryInfo: {
                 query: '',
                 pagenum: 1,
-                pagesize: 10,
+                pagesize: 20,
             },
             userList: [],
             total: 0,
@@ -269,12 +238,23 @@ export default {
     },
     methods: {
         async getUserList() {
-            // const { data: res } = await this.$http.get('users', { params: this.queryInfo })
-            const res = this.$store.state.res_user
-            if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
-            this.userList = res.data.users
-            this.total = res.data.total
+            //     const res = await this.$http.get('/shr/getAllUsers')
+            //     // console.log(res);
+            //     if (res.request.status !== 200) return this.$message.error('获取用户数据失败')
+            //     this.total = res.data.length
+            //     this.userList = res.data.filter(
+            //         (item, index) =>
+            //             index < this.queryInfo.pagenum * this.queryInfo.pagesize &&
+            //             index >= (this.queryInfo.pagenum - 1) * this.queryInfo.pagesize
+            //     );
+            const res = await getUserList()
             // console.log(res);
+            this.total = res.length
+            this.userList = res.filter(
+                (item, index) =>
+                    index < this.queryInfo.pagenum * this.queryInfo.pagesize &&
+                    index >= (this.queryInfo.pagenum - 1) * this.queryInfo.pagesize
+            );
         },
         handleSizeChange(newSize) {
             this.queryInfo.pagesize = newSize
@@ -363,6 +343,7 @@ export default {
     },
     created() {
         this.getUserList()
+
     }
 }
 </script>
@@ -383,8 +364,10 @@ export default {
     box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.15);
 
     .el-table {
+        position: absolute;
         margin-top: 20px;
         font-size: 14px;
+        height: calc(100% - 140px);
     }
 
     .el-pagination {

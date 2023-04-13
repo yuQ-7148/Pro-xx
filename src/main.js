@@ -9,12 +9,12 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import VChart from 'vue-echarts'
+import 'echarts'
 
 const app = createApp(App)
-axios.defaults.baseURL = 'http://42.192.58.33:6688'
-// axios.defaults.baseURL = 'http://127.0.0.1:5173'
-app.config.globalProperties.$http = axios
-
+// axios.defaults.baseURL = 'http://42.192.58.33:6688'
+// app.config.globalProperties.$http = axios
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
@@ -77,6 +77,22 @@ const store = createStore({
                         id: 6,
                         authName: '智能审批',
                     },
+                    {
+                        id: 7,
+                        authName: '系统BI',
+                        children: [
+                            {
+                                id: 701,
+                                authName: '系统BI',
+                                path: 'systembi'
+                            },
+                            {
+                                id: 702,
+                                authName: '人力编制分析',
+                                path: 'rlbzfx'
+                            },
+                        ]
+                    },
                 ],
                 meta: {
                     status: 200,
@@ -133,5 +149,6 @@ app.use(store)
 app.use(ElementPlus, {
     locale: zhCn,
   })
+app.component('v-chart',VChart)
 
 app.mount('#app')

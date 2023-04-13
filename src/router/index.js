@@ -3,6 +3,8 @@ import Login from '../components/login.vue'
 import Home from '../components/home.vue'
 import Welcome from '../components/welcome.vue'
 import User from '../components/user/users.vue'
+import SystemBI from '../components/systemBI/systemBI.vue'
+import RLBZFX from '../components/rlbzfx/rlbzfx.vue'
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -17,8 +19,10 @@ const router = createRouter({
             children: [
                 { path: '/welcome', component: Welcome },
                 { path: '/users', component: User },
+                { path: '/systembi', component: SystemBI },
             ]
         },
+        { path: '/rlbzfx', name: 'rlbzfx', component: RLBZFX },
         // {
         //     path: '/about',
         //     name: 'about',
